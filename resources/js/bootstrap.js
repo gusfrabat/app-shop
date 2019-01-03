@@ -2,10 +2,10 @@
 window._ = require('lodash');
 
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
+* Cargaremos jQuery y el complemento Bootstrap jQuery que proporciona soporte
+ * para funciones de Bootstrap basadas en JavaScript, como modales y pestañas. Esta
+ * El código puede modificarse para adaptarse a las necesidades específicas de su aplicación.
+ * /
 
 try {
     window.Popper = require('popper.js').default;

@@ -1,8 +1,8 @@
 
 /**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
+* Primero cargaremos todas las dependencias de JavaScript de este proyecto que
+ * Incluye Vue y otras bibliotecas. Es un gran punto de partida cuando
+ * Construyendo aplicaciones web robustas y potentes usando Vue y Laravel.
  */
 
 require('./bootstrap');
@@ -10,15 +10,15 @@ require('./bootstrap');
 window.Vue = require('vue');
 
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+* El siguiente bloque de código puede usarse para registrar automáticamente su
+ * Vue componentes. Explorará recursivamente este directorio para el Vue
+ * Componentes y registrarlos automáticamente con su "nombre base".
+ *
+ * P.ej. ./components/ExampleComponent.vue -> <example-component> </example-component>
+ * /
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// const files = require.context ('./', true, /\.vue$/i)
+// files.keys (). map (key => Vue.component (key.split ('/'). pop (). split ('.') [0], files (key) .default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 

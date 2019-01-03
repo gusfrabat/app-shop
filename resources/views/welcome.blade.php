@@ -1,98 +1,143 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+@section('body-class', 'landing-page sidebar-collapse')
+@section('title', 'bievenido app shop')
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet" type="text/css">
+@section('content')
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
 
-            .full-height {
-                height: 100vh;
-            }
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('http://lorempixel.com/1920/950/technics/')">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
+<div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <h1 class="title">Aplicación de comprar online</h1>
+            <h4>Realiza tus pedidos en linea de inmediato con unos sencillos pasos</h4>
+            <br>
+            <a target="_blank" class="btn btn-danger btn-raised btn-lg">
+              <i class="fa fa-play"></i> Mira este video
+            </a>
+          </div>
         </div>
-    </body>
-</html>
+      </div>
+</div>
+
+
+
+      <div class="main main-raised">
+            <div class="container">
+
+              <div class="section text-center">
+                <div class="row">
+                  <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="title">¿Por qué pagos online?</h2>
+                    <h5 class="description">Rapido y seguro</h5>
+                  </div>
+                </div>
+                <div class="features">
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="info">
+                        <div class="icon icon-info">
+                          <i class="material-icons">chat</i>
+                        </div>
+                        <h4 class="info-title">Soporte</h4>
+                        <p>brindamos ayuda las 24 horas de el dia para que tengas una buena experiencia.</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="info">
+                        <div class="icon icon-success">
+                          <i class="material-icons">verified_user</i>
+                        </div>
+                        <h4 class="info-title">Pagos seguros</h4>
+                        <p>seguridad.</p>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="info">
+                        <div class="icon icon-danger">
+                          <i class="material-icons">fingerprint</i>
+                        </div>
+                        <h4 class="info-title">Informacion privada</h4>
+                        <p>Mantenemos tu informacion segura.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="section text-center">
+                <h2 class="title">Productos disponibles</h2>
+                <div class="team">
+                  <div class="row">
+
+                    @foreach ($products as $product)
+                    <div class="col-md-4">
+                      <div class="team-player">
+                        <div class="card card-plain">
+                          <div class="col-md-6 ml-auto mr-auto">
+                          <img src=" {{ $product->image()->first() ? $product->image()->first()->image : 'Producto sin imagen' }} " alt="Producto sin imegen..." class="img-raised rounded-circle img-fluid">
+                          </div>
+                          <h4 class="card-title">{{$product->name}}
+                            <br>
+                          <small class="card-description text-muted">{{$product->category ? $product->category->name : 'Producto sin categoria' }}</small>
+                          </h4>
+                          <div class="card-body">
+                            <p class="card-description">
+                                {{$product->description}}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    @endforeach
+
+                  </div>
+                </div>
+              </div>
+
+              <div class="section section-contacts">
+                <div class="row">
+                  <div class="col-md-8 ml-auto mr-auto">
+                    <h2 class="text-center title">Trabajamos por usted</h2>
+                    <h4 class="text-center description"></h4>
+                    <form class="contact-form">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">nombre</label>
+                            <input type="email" class="form-control" placeholder="Nombre completo">
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label class="bmd-label-floating">Correo</label>
+                            <input type="email" class="form-control" placeholder="Correo valido">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleMessage" class="bmd-label-floating">Mensaje</label>
+                        <textarea type="email" class="form-control" rows="4" id="exampleMessage"></textarea>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-4 ml-auto mr-auto text-center">
+                          <button class="btn btn-primary btn-raised">
+                            Enviar mensaje
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          @include('includes.footer')
+
+
+
+@endsection
