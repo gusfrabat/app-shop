@@ -5,7 +5,7 @@
 @section('content')
 
 
-<div class="page-header header-filter" data-parallax="true" style="background-image: url('http://lorempixel.com/1920/950/technics/')">
+<div class="page-header header-filter" data-parallax="true" style="background-image: url('/images/products/fondo5.jpg')">
 </div>
     <div class="main mrtop">
         <div class="container col-12">
@@ -38,22 +38,44 @@
                                         <td>{{$product->category ? $product->category->name : 'Sin categoria' }}</td>
                                         <td>&euro;{{$product->price}}</td>
                                         <td class="td-actions d-flex justify-content-end">
-                                            <a href="#" class="btn btn-just-icon btn-link" rel="tooltip" title="Agregar producto">
+                                            <a href="{{ url('/products/'.$product->id) }}" class="btn btn-just-icon btn-link" rel="tooltip" title="Ver producto">
                                                 <i class="text-info fa fa-info"></i>
                                             </a>
-                                            <a href="#" class="btn btn-just-icon btn-link" rel="tooltip" title="Editar imagen">
-                                                    <i class="text-warning fa fa-image"></i>
-                                                </a>
+                                            <a href="{{ url('/admin/products/'.$product->id.'/images') }}" class="btn btn-just-icon btn-link" rel="tooltip" title="Editar imagen">
+                                            <i class="text-warning fa fa-image"></i>
+                                            </a>
                                             <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" class="btn btn-just-icon btn-link" rel="tooltip" title="Editar producto">
                                                 <i class="text-success fa fa-edit"></i>
                                             </a>
-                                            <form method="POST" action="{{ url('/admin/products/'.$product->id) }}">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-just-icon btn-link" rel="tooltip" title="Eliminar producto">
+                                            <div class="modal fade" id="{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Eliminar Producto</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <p>¿está seguro que desea eliminar el producto?</p>
+                                                            <p class="text-center">{{$product->name}}</p>
+                                                        </div>
+                                                        <div class="d-flex justify-content-end mr-3">
+                                                            <div>
+                                                            <button type="button" class="btn btn-secondary btn-round" data-dismiss="modal">Cancelar</button>
+                                                            </div>
+                                                            <form method="POST" action="{{ url('/admin/products/'.$product->id) }}">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-warning btn-round" rel="tooltip" title="Eliminar producto">Aceptar</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-just-icon btn-link" data-toggle="modal" data-target="#{{$product->id}}" rel="tooltip" title="Eliminar producto">
                                                     <i class="text-danger fa fa-times"></i>
-                                                </button>
-                                            </form>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -69,42 +91,9 @@
         </div>
     </div>
 
-        <footer class="footer footer-default">
-            <div class="container">
-              <nav class="float-left">
-                <ul>
-                  <li>
-                    <a href="https://www.creative-tim.com">
-                      Creative Tim
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://creative-tim.com/presentation">
-                      About Us
-                    </a>
-                  </li>
-                  <li>
-                    <a href="http://blog.creative-tim.com">
-                      Blog
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.creative-tim.com/license">
-                      Licenses
-                    </a>
-                  </li>
-                </ul>
-              </nav>
-              <div class="copyright float-right">
-                &copy;
-                <script>
-                  document.write(new Date().getFullYear())
-                </script>, made with <i class="material-icons">favorite</i> by
-                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> for a better web.
-              </div>
-            </div>
-        </footer>
 
+    @include('includes.footer')
 
 
 @endsection
+ 

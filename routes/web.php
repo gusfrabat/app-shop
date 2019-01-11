@@ -16,10 +16,16 @@ Route::get('/', 'TestController@welcome');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/products/{id}', 'ProductController@show')->name('home');
+
+Route::post('/cart', 'CartDetailController@store')->name('home');
+Route::delete('/cart', 'CartDetailController@destroy')->name('home');
+Route::post('/order', 'CartController@update')->name('home');
 
 
 
-Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+
+Route::middleware(['auth','admin'])->prefix('admin')->namespace('Admin')->group(function () {
     Route::get('/products', 'ProductController@index'); //listado productos
     Route::get('/products/create', 'ProductController@create'); // registrar
     Route::post('/products', 'ProductController@store'); // crear
@@ -28,7 +34,8 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::delete('/products/{id}', 'ProductController@destroy'); // eliminar
     Route::get('/products/{id}/images', 'ImageController@index'); // traer datos de la imagen
     Route::post('/products/{id}/images', 'ImageController@store'); // crear nueva imagen
-    Route::delete('/products/{id}/image', 'ImageController@destroy'); // eliminar
+    Route::delete('/products/{id}/images', 'ImageController@destroy'); // eliminar
+    Route::get('/products/{id}/images/select/{image}', 'ImageController@select'); // Destacar una imagen
 
 });
 

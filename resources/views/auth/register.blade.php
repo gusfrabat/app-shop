@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('body-class', 'login-page sidebar-collapse')
 @section('content')
-<div class="page-header header-filter" style="background-image: url('img/bg7.jpg'); background-size: cover; background-position: top center;">
+<div class="page-header header-filter" style="background-image: url('images/products/fondo4.jpg'); background-size: cover; background-position: top center;">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-6 ml-auto mr-auto">
